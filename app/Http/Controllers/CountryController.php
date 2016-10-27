@@ -2,10 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Country;
-use Illuminate\Http\Request;
-use App\Http\Requests;
-
 class countryController extends Controller
 {
     public function __construct()
@@ -13,8 +9,10 @@ class countryController extends Controller
         $this->middleware('auth');
     }
 
-    public function list()
+    public function list($id=null)
     {
-    	return view('admin.country.list', ['countries' => Country::get()]);
+    	return view('admin.country.list', [
+    		'countries' => ($id ? \App\Models\Country::where('id', $id)->get() : \App\Models\Country::get() )
+		]);
     }
 }

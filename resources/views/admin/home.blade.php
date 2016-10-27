@@ -12,7 +12,11 @@
                 </div>
 
                 <ul>
-                    <li> <a href="admin/country/list"> Paises </a> </li>
+                    <li> <a href="admin/countries"> Paises </a> </li>
+                </ul>
+
+                <ul>
+                    <li> <a href="admin/states/30"> Estados do Brasil </a> </li>
                 </ul>
 
             </div>

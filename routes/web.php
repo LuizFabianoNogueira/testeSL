@@ -11,25 +11,35 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+#Rota da rais do sistema
+Route::get('/', function () { return view('welcome');});
 
-Auth::routes();
-
+#Rota simples para home page
 Route::get('/home', 'HomeController@index');
 
+#Rotas de autenticação e outros da classe Auth
+Auth::routes();
 
-Route::get('/passport/', function(){
-	return view('passport.home');
-});
+#rota para view de controle de passaport
+Route::get('/passport/', function(){ return view('passport.home'); });
 
+#Grupo Admin
 Route::group(['prefix' => 'admin'], function () {
+	#raiz admin
     Route::get('/', function () { return view('admin.home'); });
-    Route::get('/country/list', 'CountryController@list');
+    #lista de paises
+    Route::get('/country/{id?}', 'CountryController@list');
+    Route::get('/countries', 'CountryController@list');
+    #lista de estados
+    Route::get('/state/{id}', 'StateController@get');
+    Route::get('/states/{id?}', 'StateController@list');
 });
 
 
-#JSON LIST
-Route::get('/country/list', function () { return json_encode( \App\Models\Country::get()); });
-Route::get('/country/list/{id}', function ($id) { return json_encode( \App\Models\Country::find($id)->get()); });
+
+Route::get('/teste', function () { 
+	
+	$Obj = \App\Models\State::find(10);
+	dd($Obj);
+
+});
