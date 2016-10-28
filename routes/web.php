@@ -35,7 +35,9 @@ Route::group(['prefix' => 'admin'], function () {
     Route::get('/states/{id?}', 'StateController@list');
 });
 
-
+//Route::get('/register', function(){ return view('register.new'); });
+Route::get('/novo', function(){ return view('register.new'); })->name('cadastro.novo');
+Route::post('/novo/save', 'PersonController@salvar')->name('cadastro.save');
 
 Route::get('/teste', function () { 
 	
